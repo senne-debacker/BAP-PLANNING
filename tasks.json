@@ -726,5 +726,18 @@
     "note": "Voor 22u. Met Laura afspreken hoe (WeTransfer?)",
     "status": "Not started",
     "wie": ""
+  },
+  {
+    "id": "testmoment-1-voorbereiden-euoy",
+    "t": "Testmoment 1 voorbereiden",
+    "type": "Taak",
+    "ond": "Testen",
+    "start": "2026-11-10",
+    "end": "2026-11-15",
+    "wie": "Senne",
+    "status": "In works",
+    "prio": "Basis",
+    "dep": "",
+    "note": "Voorbereiden van testmoment 1 op Chiro Hemo Opstal."
   }
 ]
