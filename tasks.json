@@ -726,5 +726,18 @@
     "prio": "Basis",
     "dep": "",
     "note": "Voorbereiden van testmoment 1 op Chiro Hemo Opstal."
+  },
+  {
+    "id": "start-opbouw-constructie-fjcx",
+    "t": "Start opbouw constructie",
+    "type": "Taak",
+    "ond": "",
+    "start": "2026-11-10",
+    "end": "2026-11-13",
+    "wie": "Senne",
+    "status": "In works",
+    "prio": "Basis",
+    "dep": "",
+    "note": ""
   }
 ]
