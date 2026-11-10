@@ -78,19 +78,6 @@
     "wie": ""
   },
   {
-    "id": "user-journey-in-figma-updaten-naar-het-verhaal-nu",
-    "t": "User journey in Figma updaten naar het verhaal nu",
-    "type": "Taak",
-    "ond": "Experience Design",
-    "start": "2026-11-11",
-    "end": "2026-11-14",
-    "prio": "Basis",
-    "dep": "",
-    "note": "Oude versie heeft nog kantlijn, wiebeloogjes en Gommaar die uitveegt",
-    "status": "Not started",
-    "wie": ""
-  },
-  {
     "id": "tech-test-gebaren-herkennen-met-webcam-mediapipe",
     "t": "Tech-test: gebaren herkennen met webcam (MediaPipe)",
     "type": "Taak",
