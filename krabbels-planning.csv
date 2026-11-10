@@ -1,0 +1,59 @@
+Taak,Type,Onderdeel,Start,Deadline,Week,Speling (dagen),Wie,Status,Prioriteit,Hangt af van,Notitie
+Overleg Laura 28/10,Overleg,Communicatie,2026-10-28,2026-10-28,W44,,,Done,Basis,,
+Contract ondertekenen en indienen,School-deadline,Communicatie,2026-10-30,2026-10-30,W44,,,Done,Basis,,
+Pitchdeck + video naar Laura,School-deadline,Communicatie,2026-11-01,2026-11-01,W44,,,Done,Basis,,concept.pdf + pitchdeck.mp4
+Overleg Laura 04/11,Overleg,Communicatie,2026-11-04,2026-11-04,W45,,,Done,Basis,,
+Overleg Laura 10/11,Overleg,Communicatie,2026-11-10,2026-11-10,W46,,,Done,Basis,,"Notities in Figma, pagina 5"
+Feedbackmoment leerkrachten 10/11,Overleg,Communicatie,2026-11-10,2026-11-10,W46,,,Done,Basis,,
+Feedback van leerkrachten en Laura uitschrijven,Taak,Concept,2026-11-10,2026-11-11,W46,,,Not started,Basis,Feedbackmoment leerkrachten 10/11,"Wat nemen we mee, wat laten we bewust liggen? Nodig voor de pitch"
+Kiezen wat er op de jury moet werken (MVP),Taak,Concept,2026-11-11,2026-11-12,W46,,,Not started,Basis,Feedback van leerkrachten en Laura uitschrijven,"Voorstel: iPad tekenen, Krabbel op de muur, 3 gebaren, 1 level, uitgangsscherm"
+Materiaal uitlenen op school,Taak,Bouw,2026-11-10,2026-11-13,W46,,,Not started,Basis,,"Beamer Optoma short throw, Logitech Brio, 12V ledstrips, HDMI XL, tripod, monitor"
+User journey in Figma updaten naar het verhaal nu,Taak,Experience Design,2026-11-11,2026-11-14,W46,,,Not started,Basis,,"Oude versie heeft nog kantlijn, wiebeloogjes en Gommaar die uitveegt"
+Tech-test: gebaren herkennen met webcam (MediaPipe),Taak,Development,2026-11-11,2026-11-15,W46,,,Not started,Basis,Materiaal uitlenen op school,"Grootste risico. Lukt brug, helling, ladder? En met 2 personen?"
+Tech-test: tekening van iPad naar de muur sturen,Taak,Development,2026-11-11,2026-11-15,W46,,,Not started,Basis,,Bv. web-app + websockets op een laptop
+Techstack kiezen,Taak,Development,2026-11-13,2026-11-16,W47,,,Not started,Basis,Tech-test: gebaren herkennen met webcam (MediaPipe),Browser of Unity? Hangt af van de twee tech-tests
+"Puntje en Krabbel uittekenen (stijl, houdingen)",Taak,Design,2026-11-11,2026-11-17,W47,,,Not started,Basis,,
+iPad-schermen uitwerken zonder tekst,Taak,Design,2026-11-12,2026-11-17,W47,,,Not started,Basis,,'KLIK OP MIJ' vervangen door een symbool
+Project pitch: inhoud uitschrijven,Taak,Communicatie,2026-11-16,2026-11-17,W47,,,Not started,Basis,Feedback van leerkrachten en Laura uitschrijven,"Criteria: voor- en nadelen, waar staan we, klantfeedback, iets unieks, volgende stappen, twijfels"
+Overleg Laura 17/11,Overleg,Communicatie,2026-11-17,2026-11-17,W47,,,Not started,Basis,,
+Project pitch: demo of video van de gebaren,Taak,Development,2026-11-16,2026-11-18,W47,,,Not started,Basis,Tech-test: gebaren herkennen met webcam (MediaPipe),'Toon waar je staat': iets dat beweegt
+Project pitch: slides maken,Taak,Design,2026-11-17,2026-11-18,W47,,,Not started,Basis,Project pitch: inhoud uitschrijven,
+Project pitch klaar en geoefend,Tussendeadline,Communicatie,2026-11-18,2026-11-18,W47,2,,Not started,Basis,Project pitch: slides maken,2 dagen speling voor de deadline
+Project pitch indienen,School-deadline,Communicatie,2026-11-20,2026-11-20,W47,,,Not started,Basis,Project pitch klaar en geoefend,"BAP_13_JEF_projectpitch.zip met presentation.pdf, voor 22u"
+"Game: Krabbel loopt, valt in een gat, armen opzij maakt een brug",Taak,Development,2026-11-16,2026-11-22,W47,,,Not started,Basis,Techstack kiezen,Eerste speelbare stuk
+Level 1 ontwerpen,Taak,Design,2026-11-17,2026-11-22,W47,,,Not started,Basis,"Puntje en Krabbel uittekenen (stijl, houdingen)",
+Testplan maken voor het testmoment,Taak,Experience Design,2026-11-19,2026-11-24,W48,,,Not started,Basis,,"Wat willen we weten? Vragen, observatielijst, wat meten we"
+Overleg Laura 24/11,Overleg,Communicatie,2026-11-24,2026-11-24,W48,,,Not started,Basis,,
+"Game: getekende Krabbel laten bewegen (lopen, wiebelen)",Taak,Development,2026-11-18,2026-11-25,W48,,,Not started,Basis,Tech-test: tekening van iPad naar de muur sturen,
+Game: helling en ladder,Taak,Development,2026-11-23,2026-11-27,W48,,,Not started,Basis,"Game: Krabbel loopt, valt in een gat, armen opzij maakt een brug",
+Game: Puntje doet het eerst voor (leren zonder woorden),Taak,Development,2026-11-23,2026-11-28,W48,,,Not started,Basis,"Game: Krabbel loopt, valt in een gat, armen opzij maakt een brug","Probleem, Puntje probeert, jouw beurt, hulp, beloning"
+iPad-app: tekenen en versturen,Taak,Development,2026-11-23,2026-11-28,W48,,,Not started,Basis,iPad-schermen uitwerken zonder tekst,"Met de vinger, geen pen"
+Puntje animaties v1,Taak,Design,2026-11-23,2026-11-28,W48,,,Not started,Basis,"Puntje en Krabbel uittekenen (stijl, houdingen)",
+"Game: hulp als het niet lukt (spookfiguur, ring)",Taak,Development,2026-11-25,2026-11-29,W48,,,Not started,Basis,Game: helling en ladder,
+Testopstelling op campus voorbereiden,Taak,Bouw,2026-11-25,2026-12-01,W49,,,Not started,Basis,Materiaal uitlenen op school,"Beamer, camera, iPad, iets als muur. Waar staan we?"
+Game: 2 spelers,Taak,Development,2026-11-26,2026-12-01,W49,,,Not started,Extra,Game: helling en ladder,Als het niet lukt voor de test: na de test
+Overleg Laura 1/12 (13u),Overleg,Communicatie,2026-12-01,2026-12-01,W49,,,Not started,Basis,,
+Prototype klaar voor het testmoment (feature freeze),Tussendeadline,Development,2026-12-01,2026-12-01,W49,2,,Not started,Basis,"Game: hulp als het niet lukt (spookfiguur, ring)",Daarna enkel nog bugs fixen. 2 dagen speling
+Presentatie voor het testmoment,Taak,Communicatie,2026-11-30,2026-12-02,W49,,,Not started,Basis,,
+Zips voor het testmoment klaarzetten,Taak,Communicatie,2026-12-01,2026-12-02,W49,,,Not started,Basis,,"BAP_13_JEF_XD.zip, _DESIGN.zip, _DEVELOPMENT.zip en _PRESENTATION.pdf"
+Testopstelling volledig uitproberen,Taak,Bouw,2026-12-02,2026-12-02,W49,,,Not started,Basis,Prototype klaar voor het testmoment (feature freeze),
+Testmoment op campus + indienen,School-deadline,Testen,2026-12-03,2026-12-03,W49,,,Not started,Basis,Testopstelling volledig uitproberen,Hele voormiddag aanwezig. Indienen voor 22u. Exacte testdag nog checken
+Test met kinderen (JEF),Taak,Testen,2026-12-04,2026-12-04,W49,,,Not started,Basis,Testmoment op campus + indienen,"Nog bevestigen met Laura. Ook testen: welk einde werkt (Gommaar, boek gaat dicht, niets)"
+Testresultaten verwerken en prioriteiten kiezen,Taak,Experience Design,2026-12-04,2026-12-07,W50,,,Not started,Basis,Test met kinderen (JEF),"Wat fixen we voor de jury, wat schuift naar januari?"
+Ledstrip laten oplichten bij versturen,Taak,Bouw,2026-11-26,2026-12-08,W50,,,Not started,Extra,Materiaal uitlenen op school,
+Overleg Laura 8/12,Overleg,Communicatie,2026-12-08,2026-12-08,W50,,,Not started,Basis,,
+Fixes uit de test,Taak,Development,2026-12-07,2026-12-11,W50,,,Not started,Basis,Testresultaten verwerken en prioriteiten kiezen,
+"Game: finale, ontsnapping en uitgangsscherm",Taak,Development,2026-12-07,2026-12-11,W50,,,Not started,Basis,Testresultaten verwerken en prioriteiten kiezen,
+Geluid en muziek,Taak,Design,2026-12-07,2026-12-11,W50,,,Not started,Extra,,
+MVP klaar (feature freeze),Tussendeadline,Development,2026-12-11,2026-12-11,W50,5,,Not started,Basis,Fixes uit de test,Daarna enkel nog bugs. 5 dagen speling
+Jury: verhaal en presentatie,Taak,Communicatie,2026-12-08,2026-12-13,W50,,,Not started,Basis,,12 min + 3 min vragen. Resultaat moet schitteren. Titel + slide met contactgegevens
+Jury: video van hoe het werkt,Taak,Communicatie,2026-12-10,2026-12-13,W50,,,Not started,Basis,"Game: finale, ontsnapping en uitgangsscherm",Als back-up voor de live demo
+Opstelling voor de jury bouwen,Taak,Bouw,2026-12-07,2026-12-14,W51,,,Not started,Basis,Testresultaten verwerken en prioriteiten kiezen,Testversie van de booth of de campusopstelling verbeteren. Beslissen in week 4
+Readme: hoe start je de installatie op,Taak,Development,2026-12-10,2026-12-14,W51,,,Not started,Basis,,Verplicht bij de jury
+Generale repetitie jury,Taak,Communicatie,2026-12-14,2026-12-14,W51,,,Not started,Basis,Jury: verhaal en presentatie,Met opstelling en timer
+Overleg Laura 15/12,Overleg,Communicatie,2026-12-15,2026-12-15,W51,,,Not started,Basis,,
+"Zips, readme, pdf en bronbestand klaar",Tussendeadline,Communicatie,2026-12-15,2026-12-15,W51,1,,Not started,Basis,Readme: hoe start je de installatie op,1 dag speling
+Jury indienen,School-deadline,Communicatie,2026-12-16,2026-12-16,W51,,,Not started,Basis,"Zips, readme, pdf en bronbestand klaar","Readme + XD/DESIGN/DEVELOPMENT-zips + PRESENTATION.pdf en bron, voor 22u"
+Opstelling neerzetten op campus,Taak,Bouw,2026-12-16,2026-12-16,W51,,,Not started,Basis,Opstelling voor de jury bouwen,"Atelier 2, Atelier 3, achteraan Atelier 1 of Passerelle 1, vanaf 16/12"
+Jury,School-deadline,Communicatie,2026-12-17,2026-12-17,W51,,,Not started,Basis,Jury indienen,Datum en slot nog niet bekend. 20 min op voorhand aanwezig
+Alle bronbestanden naar JEF sturen,School-deadline,Communicatie,2026-12-18,2026-12-18,W51,,,Not started,Basis,Jury indienen,Voor 22u. Met Laura afspreken hoe (WeTransfer?)
