@@ -78,19 +78,6 @@
     "wie": ""
   },
   {
-    "id": "kiezen-wat-er-op-de-jury-moet-werken-mvp",
-    "t": "Kiezen wat er op de jury moet werken (MVP)",
-    "type": "Taak",
-    "ond": "Concept",
-    "start": "2026-11-11",
-    "end": "2026-11-12",
-    "prio": "Basis",
-    "dep": "Feedback van leerkrachten en Laura uitschrijven",
-    "note": "Voorstel: iPad tekenen, Krabbel op de muur, 3 gebaren, 1 level, uitgangsscherm",
-    "status": "Not started",
-    "wie": ""
-  },
-  {
     "id": "materiaal-uitlenen-op-school",
     "t": "Materiaal uitlenen op school",
     "type": "Taak",
