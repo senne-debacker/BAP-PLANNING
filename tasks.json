@@ -78,19 +78,6 @@
     "wie": ""
   },
   {
-    "id": "feedback-van-leerkrachten-en-laura-uitschrijven",
-    "t": "Feedback van leerkrachten en Laura uitschrijven",
-    "type": "Taak",
-    "ond": "Concept",
-    "start": "2026-11-10",
-    "end": "2026-11-11",
-    "prio": "Basis",
-    "dep": "Feedbackmoment leerkrachten 10/11",
-    "note": "Wat nemen we mee, wat laten we bewust liggen? Nodig voor de pitch",
-    "status": "Not started",
-    "wie": ""
-  },
-  {
     "id": "kiezen-wat-er-op-de-jury-moet-werken-mvp",
     "t": "Kiezen wat er op de jury moet werken (MVP)",
     "type": "Taak",
