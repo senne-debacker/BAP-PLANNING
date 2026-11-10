@@ -6,7 +6,8 @@
 <title>Krabbels planning</title>
 <style>
 :root{--bg:#f6f4ee;--card:#fff;--ink:#1c2133;--mute:#6b7184;--line:#e3e0d6;--blue:#2966eb;--school:#e5484d;--mile:#f59e0b;--talk:#8b5cf6;--task:#2966eb;
---ns:#9aa0ae;--iw:#2966eb;--ad:#f59e0b;--dn:#22a05b;--shadow:0 1px 2px rgba(0,0,0,.06)}
+--ns:#9aa0ae;--iw:#2966eb;--ad:#f59e0b;--dn:#22a05b;--shadow:0 1px 2px rgba(0,0,0,.06);
+--ibe:#0e9f8e;--senne:#e0762b;--tjorven:#c2408f}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14161d;--card:#1d2029;--ink:#eceef3;--mute:#9298a8;--line:#2c303b;--shadow:none}}
 :root[data-theme="dark"]{--bg:#14161d;--card:#1d2029;--ink:#eceef3;--mute:#9298a8;--line:#2c303b;--shadow:none}
 *{box-sizing:border-box}
@@ -23,30 +24,40 @@ h1{margin:0;font-size:30px;letter-spacing:-.02em}
 .tabs{display:flex;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:3px}
 .tabs button{border:0;background:none;color:var(--ink);padding:6px 12px;border-radius:7px;font:inherit;cursor:pointer}
 .tabs button.on{background:var(--ink);color:var(--bg)}
-select,.btn{font:inherit;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:8px;padding:6px 8px}
+select,input,textarea,.btn{font:inherit;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:8px;padding:6px 8px}
 .btn{cursor:pointer}
+.btn.pri{background:var(--blue);border-color:var(--blue);color:#fff;font-weight:600}
+.btn.del{color:var(--school)}
+.spacer{flex:1}
 label.chk{display:flex;gap:6px;align-items:center;color:var(--mute)}
+#sync{font-size:13px;color:var(--mute)}
 main{max-width:1200px;margin:0 auto;padding:16px}
-.week{margin-bottom:28px}
-.week h2{font-size:18px;margin:0 0 4px}
-.week .range{color:var(--mute);font-size:13px;margin-bottom:10px}
+.week{margin-bottom:24px}
+.week h2{font-size:18px;margin:0 0 2px}
+.week .range{color:var(--mute);font-size:13px;margin-bottom:8px}
 .week.now h2::after{content:"deze week";margin-left:8px;font-size:12px;background:var(--blue);color:#fff;padding:2px 8px;border-radius:99px;vertical-align:middle}
-.list{display:grid;gap:8px}
-.task{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--task);border-radius:10px;padding:10px 12px;box-shadow:var(--shadow);display:grid;grid-template-columns:1fr auto;gap:4px 12px;align-items:start}
+.list{display:grid;gap:6px}
+.week .list{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+/* compacte kaart */
+.task{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--task);border-radius:9px;padding:8px 10px;box-shadow:var(--shadow);display:flex;gap:8px;align-items:center;cursor:pointer;text-align:left;width:100%;font:inherit;color:inherit}
+.task:hover{border-color:color-mix(in srgb,var(--ink) 25%,var(--line))}
+.task:focus-visible{outline:2px solid var(--blue);outline-offset:1px}
 .task[data-type="School-deadline"]{border-left-color:var(--school)}
 .task[data-type="Tussendeadline"]{border-left-color:var(--mile)}
 .task[data-type="Overleg"]{border-left-color:var(--talk)}
 .task.done .tt{text-decoration:line-through;color:var(--mute)}
-.tt{font-weight:600}
-.meta{color:var(--mute);font-size:13px;display:flex;gap:10px;flex-wrap:wrap}
-.note{grid-column:1/-1;color:var(--mute);font-size:13px}
-.ctl{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
-.ctl select{font-size:13px;padding:4px 6px}
+.task.dragging{opacity:.4}
+.tt{font-weight:600;flex:1;min-width:0;line-height:1.3}
+.dot{width:8px;height:8px;border-radius:50%;flex:none;background:var(--ns)}
+.dot[data-s="In works"]{background:var(--iw)}.dot[data-s="Almost done"]{background:var(--ad)}.dot[data-s="Done"]{background:var(--dn)}
+.who{flex:none;font-size:12px;font-weight:600;padding:2px 8px;border-radius:99px;color:#fff;background:var(--mute)}
+.who[data-w="Ibe"]{background:var(--ibe)}.who[data-w="Senne"]{background:var(--senne)}.who[data-w="Tjorven"]{background:var(--tjorven)}
+.who.none{background:none;color:var(--mute);border:1px dashed var(--line);font-weight:500}
 .st{font-weight:600}
 .st[data-s="Not started"]{color:var(--ns)} .st[data-s="In works"]{color:var(--iw)} .st[data-s="Almost done"]{color:var(--ad)} .st[data-s="Done"]{color:var(--dn)}
 .tag{font-size:11px;text-transform:uppercase;letter-spacing:.04em;font-weight:700}
 .tag.School-deadline{color:var(--school)} .tag.Tussendeadline{color:var(--mile)} .tag.Overleg{color:var(--talk)} .tag.Taak{color:var(--task)}
-.extra{font-size:11px;border:1px solid var(--line);border-radius:99px;padding:0 6px}
+.extra{font-size:11px;border:1px solid var(--line);border-radius:99px;padding:0 6px;margin-left:6px}
 /* kalender */
 .month{margin-bottom:28px}
 .month h2{font-size:18px;margin:0 0 8px}
@@ -62,17 +73,34 @@ main{max-width:1200px;margin:0 auto;padding:16px}
 .ev[data-type="Overleg"]{background:color-mix(in srgb,var(--talk) 18%,transparent)}
 .ev.done{text-decoration:line-through;opacity:.6}
 /* bord */
-.board{display:grid;grid-template-columns:repeat(4,minmax(240px,1fr));gap:12px;overflow-x:auto}
+.board{display:grid;grid-template-columns:repeat(4,minmax(220px,1fr));gap:12px;overflow-x:auto}
 .col h3{margin:0 0 8px;font-size:14px}
-.col .list{min-height:60px}
+.col .list{min-height:80px;border-radius:10px;padding:2px;transition:background .15s}
+.col .list.over{background:color-mix(in srgb,var(--blue) 12%,transparent)}
 .legend{display:flex;gap:14px;flex-wrap:wrap;color:var(--mute);font-size:13px;margin:4px 0 16px}
 .legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
 footer{max-width:1200px;margin:0 auto;padding:8px 16px 40px;color:var(--mute);font-size:13px}
-dialog{border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--ink);max-width:520px;width:calc(100% - 32px)}
-dialog::backdrop{background:rgba(0,0,0,.35)}
+footer a{color:inherit}
+/* dialog */
+dialog{border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--ink);max-width:560px;width:calc(100% - 32px);padding:20px}
+dialog::backdrop{background:rgba(0,0,0,.45)}
+dialog h2{margin:4px 0 12px;font-size:20px;line-height:1.25}
+.dl{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;margin:0 0 16px;font-size:14px}
+.dl dt{color:var(--mute)}
+.dl dd{margin:0}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.acts{display:flex;gap:8px;justify-content:flex-end;margin-top:18px;flex-wrap:wrap}
+.acts .left{margin-right:auto}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.form label{display:grid;gap:4px;font-size:13px;color:var(--mute)}
+.form .full{grid-column:1/-1}
+.form input,.form select,.form textarea{width:100%;color:var(--ink)}
+.form textarea{min-height:70px;resize:vertical}
+.hint{font-size:13px;color:var(--mute)}
+.banner{background:color-mix(in srgb,var(--mile) 18%,var(--card));border:1px solid color-mix(in srgb,var(--mile) 45%,var(--line));border-radius:10px;padding:8px 12px;font-size:13px;margin-top:14px}
 @media (max-width:700px){
   .grid .dow{font-size:10px}.day{min-height:64px}.ev{font-size:10px}
-  .task{grid-template-columns:1fr}.ctl{justify-content:flex-start}
+  .form{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -81,6 +109,7 @@ dialog::backdrop{background:rgba(0,0,0,.35)}
   <h1>Krabbels planning</h1>
   <div class="sub">Bachelorproef Devine, team 13 · Ibe, Senne, Tjorven · JEF XL-Medialab</div>
   <div class="next" id="next"></div>
+  <div class="banner" id="previewBanner" hidden>Previewmodus: wijzigingen worden enkel in deze browser bewaard, niet op GitHub. <button class="btn" id="previewReset" style="margin-left:6px">Preview resetten</button></div>
 </header>
 <div class="bar"><div class="bar-in">
   <div class="tabs" id="tabs">
@@ -92,61 +121,105 @@ dialog::backdrop{background:rgba(0,0,0,.35)}
   <select id="fOnd"><option value="">Alle onderdelen</option></select>
   <select id="fType"><option value="">Alle types</option><option>School-deadline</option><option>Tussendeadline</option><option>Taak</option><option>Overleg</option></select>
   <label class="chk"><input type="checkbox" id="fDone"> Toon wat klaar is</label>
+  <span class="spacer"></span>
+  <span id="sync"></span>
+  <button class="btn pri" id="addBtn" hidden>+ Taak</button>
+  <button class="btn" id="authBtn">Bewerken</button>
 </div></div>
-<main id="main"></main>
-<footer>
-  Status en wie het doet worden enkel in deze browser bewaard.
-  <button class="btn" id="reset" style="margin-left:8px">Wissen</button>
-</footer>
+<main id="main"><p class="hint">Laden…</p></main>
+<footer id="foot"></footer>
 <dialog id="dlg"></dialog>
 <script>
-const TASKS = [{"id": "overleg-laura-28-10", "t": "Overleg Laura 28/10", "type": "Overleg", "ond": "Communicatie", "start": "2026-10-28", "end": "2026-10-28", "prio": "Basis", "dep": "", "note": "", "status": "Done"}, {"id": "contract-ondertekenen-en-indienen", "t": "Contract ondertekenen en indienen", "type": "School-deadline", "ond": "Communicatie", "start": "2026-10-30", "end": "2026-10-30", "prio": "Basis", "dep": "", "note": "", "status": "Done"}, {"id": "pitchdeck-video-naar-laura", "t": "Pitchdeck + video naar Laura", "type": "School-deadline", "ond": "Communicatie", "start": "2026-11-01", "end": "2026-11-01", "prio": "Basis", "dep": "", "note": "concept.pdf + pitchdeck.mp4", "status": "Done"}, {"id": "overleg-laura-04-11", "t": "Overleg Laura 04/11", "type": "Overleg", "ond": "Communicatie", "start": "2026-11-04", "end": "2026-11-04", "prio": "Basis", "dep": "", "note": "", "status": "Done"}, {"id": "overleg-laura-10-11", "t": "Overleg Laura 10/11", "type": "Overleg", "ond": "Communicatie", "start": "2026-11-10", "end": "2026-11-10", "prio": "Basis", "dep": "", "note": "Notities in Figma, pagina 5", "status": "Done"}, {"id": "feedbackmoment-leerkrachten-10-11", "t": "Feedbackmoment leerkrachten 10/11", "type": "Overleg", "ond": "Communicatie", "start": "2026-11-10", "end": "2026-11-10", "prio": "Basis", "dep": "", "note": "", "status": "Done"}, {"id": "feedback-van-leerkrachten-en-laura-uitschrijven", "t": "Feedback van leerkrachten en Laura uitschrijven", "type": "Taak", "ond": "Concept", "start": "2026-11-10", "end": "2026-11-11", "prio": "Basis", "dep": "Feedbackmoment leerkrachten 10/11", "note": "Wat nemen we mee, wat laten we bewust liggen? Nodig voor de pitch", "status": "Not started"}, {"id": "kiezen-wat-er-op-de-jury-moet-werken-mvp", "t": "Kiezen wat er op de jury moet werken (MVP)", "type": "Taak", "ond": "Concept", "start": "2026-11-11", "end": "2026-11-12", "prio": "Basis", "dep": "Feedback van leerkrachten en Laura uitschrijven", "note": "Voorstel: iPad tekenen, Krabbel op de muur, 3 gebaren, 1 level, uitgangsscherm", "status": "Not started"}, {"id": "materiaal-uitlenen-op-school", "t": "Materiaal uitlenen op school", "type": "Taak", "ond": "Bouw", "start": "2026-11-10", "end": "2026-11-13", "prio": "Basis", "dep": "", "note": "Beamer Optoma short throw, Logitech Brio, 12V ledstrips, HDMI XL, tripod, monitor", "status": "Not started"}, {"id": "user-journey-in-figma-updaten-naar-het-verhaal-nu", "t": "User journey in Figma updaten naar het verhaal nu", "type": "Taak", "ond": "Experience Design", "start": "2026-11-11", "end": "2026-11-14", "prio": "Basis", "dep": "", "note": "Oude versie heeft nog kantlijn, wiebeloogjes en Gommaar die uitveegt", "status": "Not started"}, {"id": "tech-test-gebaren-herkennen-met-webcam-mediapipe", "t": "Tech-test: gebaren herkennen met webcam (MediaPipe)", "type": "Taak", "ond": "Development", "start": "2026-11-11", "end": "2026-11-15", "prio": "Basis", "dep": "Materiaal uitlenen op school", "note": "Grootste risico. Lukt brug, helling, ladder? En met 2 personen?", "status": "Not started"}, {"id": "tech-test-tekening-van-ipad-naar-de-muur-sturen", "t": "Tech-test: tekening van iPad naar de muur sturen", "type": "Taak", "ond": "Development", "start": "2026-11-11", "end": "2026-11-15", "prio": "Basis", "dep": "", "note": "Bv. web-app + websockets op een laptop", "status": "Not started"}, {"id": "techstack-kiezen", "t": "Techstack kiezen", "type": "Taak", "ond": "Development", "start": "2026-11-13", "end": "2026-11-16", "prio": "Basis", "dep": "Tech-test: gebaren herkennen met webcam (MediaPipe)", "note": "Browser of Unity? Hangt af van de twee tech-tests", "status": "Not started"}, {"id": "puntje-en-krabbel-uittekenen-stijl-houdingen", "t": "Puntje en Krabbel uittekenen (stijl, houdingen)", "type": "Taak", "ond": "Design", "start": "2026-11-11", "end": "2026-11-17", "prio": "Basis", "dep": "", "note": "", "status": "Not started"}, {"id": "ipad-schermen-uitwerken-zonder-tekst", "t": "iPad-schermen uitwerken zonder tekst", "type": "Taak", "ond": "Design", "start": "2026-11-12", "end": "2026-11-17", "prio": "Basis", "dep": "", "note": "'KLIK OP MIJ' vervangen door een symbool", "status": "Not started"}, {"id": "project-pitch-inhoud-uitschrijven", "t": "Project pitch: inhoud uitschrijven", "type": "Taak", "ond": "Communicatie", "start": "2026-11-16", "end": "2026-11-17", "prio": "Basis", "dep": "Feedback van leerkrachten en Laura uitschrijven", "note": "Criteria: voor- en nadelen, waar staan we, klantfeedback, iets unieks, volgende stappen, twijfels", "status": "Not started"}, {"id": "overleg-laura-17-11", "t": "Overleg Laura 17/11", "type": "Overleg", "ond": "Communicatie", "start": "2026-11-17", "end": "2026-11-17", "prio": "Basis", "dep": "", "note": "", "status": "Not started"}, {"id": "project-pitch-demo-of-video-van-de-gebaren", "t": "Project pitch: demo of video van de gebaren", "type": "Taak", "ond": "Development", "start": "2026-11-16", "end": "2026-11-18", "prio": "Basis", "dep": "Tech-test: gebaren herkennen met webcam (MediaPipe)", "note": "'Toon waar je staat': iets dat beweegt", "status": "Not started"}, {"id": "project-pitch-slides-maken", "t": "Project pitch: slides maken", "type": "Taak", "ond": "Design", "start": "2026-11-17", "end": "2026-11-18", "prio": "Basis", "dep": "Project pitch: inhoud uitschrijven", "note": "", "status": "Not started"}, {"id": "project-pitch-klaar-en-geoefend", "t": "Project pitch klaar en geoefend", "type": "Tussendeadline", "ond": "Communicatie", "start": "2026-11-18", "end": "2026-11-18", "prio": "Basis", "dep": "Project pitch: slides maken", "note": "2 dagen speling voor de deadline", "status": "Not started"}, {"id": "project-pitch-indienen", "t": "Project pitch indienen", "type": "School-deadline", "ond": "Communicatie", "start": "2026-11-20", "end": "2026-11-20", "prio": "Basis", "dep": "Project pitch klaar en geoefend", "note": "BAP_13_JEF_projectpitch.zip met presentation.pdf, voor 22u", "status": "Not started"}, {"id": "game-krabbel-loopt-valt-in-een-gat-armen-opzij-maakt-een-bru", "t": "Game: Krabbel loopt, valt in een gat, armen opzij maakt een brug", "type": "Taak", "ond": "Development", "start": "2026-11-16", "end": "2026-11-22", "prio": "Basis", "dep": "Techstack kiezen", "note": "Eerste speelbare stuk", "status": "Not started"}, {"id": "level-1-ontwerpen", "t": "Level 1 ontwerpen", "type": "Taak", "ond": "Design", "start": "2026-11-17", "end": "2026-11-22", "prio": "Basis", "dep": "Puntje en Krabbel uittekenen (stijl, houdingen)", "note": "", "status": "Not started"}, {"id": "testplan-maken-voor-het-testmoment", "t": "Testplan maken voor het testmoment", "type": "Taak", "ond": "Experience Design", "start": "2026-11-19", "end": "2026-11-24", "prio": "Basis", "dep": "", "note": "Wat willen we weten? Vragen, observatielijst, wat meten we", "status": "Not started"}, {"id": "overleg-laura-24-11", "t": "Overleg Laura 24/11", "type": "Overleg", "ond": "Communicatie", "start": "2026-11-24", "end": "2026-11-24", "prio": "Basis", "dep": "", "note": "", "status": "Not started"}, {"id": "game-getekende-krabbel-laten-bewegen-lopen-wiebelen", "t": "Game: getekende Krabbel laten bewegen (lopen, wiebelen)", "type": "Taak", "ond": "Development", "start": "2026-11-18", "end": "2026-11-25", "prio": "Basis", "dep": "Tech-test: tekening van iPad naar de muur sturen", "note": "", "status": "Not started"}, {"id": "game-helling-en-ladder", "t": "Game: helling en ladder", "type": "Taak", "ond": "Development", "start": "2026-11-23", "end": "2026-11-27", "prio": "Basis", "dep": "Game: Krabbel loopt, valt in een gat, armen opzij maakt een brug", "note": "", "status": "Not started"}, {"id": "game-puntje-doet-het-eerst-voor-leren-zonder-woorden", "t": "Game: Puntje doet het eerst voor (leren zonder woorden)", "type": "Taak", "ond": "Development", "start": "2026-11-23", "end": "2026-11-28", "prio": "Basis", "dep": "Game: Krabbel loopt, valt in een gat, armen opzij maakt een brug", "note": "Probleem, Puntje probeert, jouw beurt, hulp, beloning", "status": "Not started"}, {"id": "ipad-app-tekenen-en-versturen", "t": "iPad-app: tekenen en versturen", "type": "Taak", "ond": "Development", "start": "2026-11-23", "end": "2026-11-28", "prio": "Basis", "dep": "iPad-schermen uitwerken zonder tekst", "note": "Met de vinger, geen pen", "status": "Not started"}, {"id": "puntje-animaties-v1", "t": "Puntje animaties v1", "type": "Taak", "ond": "Design", "start": "2026-11-23", "end": "2026-11-28", "prio": "Basis", "dep": "Puntje en Krabbel uittekenen (stijl, houdingen)", "note": "", "status": "Not started"}, {"id": "game-hulp-als-het-niet-lukt-spookfiguur-ring", "t": "Game: hulp als het niet lukt (spookfiguur, ring)", "type": "Taak", "ond": "Development", "start": "2026-11-25", "end": "2026-11-29", "prio": "Basis", "dep": "Game: helling en ladder", "note": "", "status": "Not started"}, {"id": "testopstelling-op-campus-voorbereiden", "t": "Testopstelling op campus voorbereiden", "type": "Taak", "ond": "Bouw", "start": "2026-11-25", "end": "2026-12-01", "prio": "Basis", "dep": "Materiaal uitlenen op school", "note": "Beamer, camera, iPad, iets als muur. Waar staan we?", "status": "Not started"}, {"id": "game-2-spelers", "t": "Game: 2 spelers", "type": "Taak", "ond": "Development", "start": "2026-11-26", "end": "2026-12-01", "prio": "Extra", "dep": "Game: helling en ladder", "note": "Als het niet lukt voor de test: na de test", "status": "Not started"}, {"id": "overleg-laura-1-12-13u", "t": "Overleg Laura 1/12 (13u)", "type": "Overleg", "ond": "Communicatie", "start": "2026-12-01", "end": "2026-12-01", "prio": "Basis", "dep": "", "note": "", "status": "Not started"}, {"id": "prototype-klaar-voor-het-testmoment-feature-freeze", "t": "Prototype klaar voor het testmoment (feature freeze)", "type": "Tussendeadline", "ond": "Development", "start": "2026-12-01", "end": "2026-12-01", "prio": "Basis", "dep": "Game: hulp als het niet lukt (spookfiguur, ring)", "note": "Daarna enkel nog bugs fixen. 2 dagen speling", "status": "Not started"}, {"id": "presentatie-voor-het-testmoment", "t": "Presentatie voor het testmoment", "type": "Taak", "ond": "Communicatie", "start": "2026-11-30", "end": "2026-12-02", "prio": "Basis", "dep": "", "note": "", "status": "Not started"}, {"id": "zips-voor-het-testmoment-klaarzetten", "t": "Zips voor het testmoment klaarzetten", "type": "Taak", "ond": "Communicatie", "start": "2026-12-01", "end": "2026-12-02", "prio": "Basis", "dep": "", "note": "BAP_13_JEF_XD.zip, _DESIGN.zip, _DEVELOPMENT.zip en _PRESENTATION.pdf", "status": "Not started"}, {"id": "testopstelling-volledig-uitproberen", "t": "Testopstelling volledig uitproberen", "type": "Taak", "ond": "Bouw", "start": "2026-12-02", "end": "2026-12-02", "prio": "Basis", "dep": "Prototype klaar voor het testmoment (feature freeze)", "note": "", "status": "Not started"}, {"id": "testmoment-op-campus-indienen", "t": "Testmoment op campus + indienen", "type": "School-deadline", "ond": "Testen", "start": "2026-12-03", "end": "2026-12-03", "prio": "Basis", "dep": "Testopstelling volledig uitproberen", "note": "Hele voormiddag aanwezig. Indienen voor 22u. Exacte testdag nog checken", "status": "Not started"}, {"id": "test-met-kinderen-jef", "t": "Test met kinderen (JEF)", "type": "Taak", "ond": "Testen", "start": "2026-12-04", "end": "2026-12-04", "prio": "Basis", "dep": "Testmoment op campus + indienen", "note": "Nog bevestigen met Laura. Ook testen: welk einde werkt (Gommaar, boek gaat dicht, niets)", "status": "Not started"}, {"id": "testresultaten-verwerken-en-prioriteiten-kiezen", "t": "Testresultaten verwerken en prioriteiten kiezen", "type": "Taak", "ond": "Experience Design", "start": "2026-12-04", "end": "2026-12-07", "prio": "Basis", "dep": "Test met kinderen (JEF)", "note": "Wat fixen we voor de jury, wat schuift naar januari?", "status": "Not started"}, {"id": "ledstrip-laten-oplichten-bij-versturen", "t": "Ledstrip laten oplichten bij versturen", "type": "Taak", "ond": "Bouw", "start": "2026-11-26", "end": "2026-12-08", "prio": "Extra", "dep": "Materiaal uitlenen op school", "note": "", "status": "Not started"}, {"id": "overleg-laura-8-12", "t": "Overleg Laura 8/12", "type": "Overleg", "ond": "Communicatie", "start": "2026-12-08", "end": "2026-12-08", "prio": "Basis", "dep": "", "note": "", "status": "Not started"}, {"id": "fixes-uit-de-test", "t": "Fixes uit de test", "type": "Taak", "ond": "Development", "start": "2026-12-07", "end": "2026-12-11", "prio": "Basis", "dep": "Testresultaten verwerken en prioriteiten kiezen", "note": "", "status": "Not started"}, {"id": "game-finale-ontsnapping-en-uitgangsscherm", "t": "Game: finale, ontsnapping en uitgangsscherm", "type": "Taak", "ond": "Development", "start": "2026-12-07", "end": "2026-12-11", "prio": "Basis", "dep": "Testresultaten verwerken en prioriteiten kiezen", "note": "", "status": "Not started"}, {"id": "geluid-en-muziek", "t": "Geluid en muziek", "type": "Taak", "ond": "Design", "start": "2026-12-07", "end": "2026-12-11", "prio": "Extra", "dep": "", "note": "", "status": "Not started"}, {"id": "mvp-klaar-feature-freeze", "t": "MVP klaar (feature freeze)", "type": "Tussendeadline", "ond": "Development", "start": "2026-12-11", "end": "2026-12-11", "prio": "Basis", "dep": "Fixes uit de test", "note": "Daarna enkel nog bugs. 5 dagen speling", "status": "Not started"}, {"id": "jury-verhaal-en-presentatie", "t": "Jury: verhaal en presentatie", "type": "Taak", "ond": "Communicatie", "start": "2026-12-08", "end": "2026-12-13", "prio": "Basis", "dep": "", "note": "12 min + 3 min vragen. Resultaat moet schitteren. Titel + slide met contactgegevens", "status": "Not started"}, {"id": "jury-video-van-hoe-het-werkt", "t": "Jury: video van hoe het werkt", "type": "Taak", "ond": "Communicatie", "start": "2026-12-10", "end": "2026-12-13", "prio": "Basis", "dep": "Game: finale, ontsnapping en uitgangsscherm", "note": "Als back-up voor de live demo", "status": "Not started"}, {"id": "opstelling-voor-de-jury-bouwen", "t": "Opstelling voor de jury bouwen", "type": "Taak", "ond": "Bouw", "start": "2026-12-07", "end": "2026-12-14", "prio": "Basis", "dep": "Testresultaten verwerken en prioriteiten kiezen", "note": "Testversie van de booth of de campusopstelling verbeteren. Beslissen in week 4", "status": "Not started"}, {"id": "readme-hoe-start-je-de-installatie-op", "t": "Readme: hoe start je de installatie op", "type": "Taak", "ond": "Development", "start": "2026-12-10", "end": "2026-12-14", "prio": "Basis", "dep": "", "note": "Verplicht bij de jury", "status": "Not started"}, {"id": "generale-repetitie-jury", "t": "Generale repetitie jury", "type": "Taak", "ond": "Communicatie", "start": "2026-12-14", "end": "2026-12-14", "prio": "Basis", "dep": "Jury: verhaal en presentatie", "note": "Met opstelling en timer", "status": "Not started"}, {"id": "overleg-laura-15-12", "t": "Overleg Laura 15/12", "type": "Overleg", "ond": "Communicatie", "start": "2026-12-15", "end": "2026-12-15", "prio": "Basis", "dep": "", "note": "", "status": "Not started"}, {"id": "zips-readme-pdf-en-bronbestand-klaar", "t": "Zips, readme, pdf en bronbestand klaar", "type": "Tussendeadline", "ond": "Communicatie", "start": "2026-12-15", "end": "2026-12-15", "prio": "Basis", "dep": "Readme: hoe start je de installatie op", "note": "1 dag speling", "status": "Not started"}, {"id": "jury-indienen", "t": "Jury indienen", "type": "School-deadline", "ond": "Communicatie", "start": "2026-12-16", "end": "2026-12-16", "prio": "Basis", "dep": "Zips, readme, pdf en bronbestand klaar", "note": "Readme + XD/DESIGN/DEVELOPMENT-zips + PRESENTATION.pdf en bron, voor 22u", "status": "Not started"}, {"id": "opstelling-neerzetten-op-campus", "t": "Opstelling neerzetten op campus", "type": "Taak", "ond": "Bouw", "start": "2026-12-16", "end": "2026-12-16", "prio": "Basis", "dep": "Opstelling voor de jury bouwen", "note": "Atelier 2, Atelier 3, achteraan Atelier 1 of Passerelle 1, vanaf 16/12", "status": "Not started"}, {"id": "jury", "t": "Jury", "type": "School-deadline", "ond": "Communicatie", "start": "2026-12-17", "end": "2026-12-17", "prio": "Basis", "dep": "Jury indienen", "note": "Datum en slot nog niet bekend. 20 min op voorhand aanwezig", "status": "Not started"}, {"id": "alle-bronbestanden-naar-jef-sturen", "t": "Alle bronbestanden naar JEF sturen", "type": "School-deadline", "ond": "Communicatie", "start": "2026-12-18", "end": "2026-12-18", "prio": "Basis", "dep": "Jury indienen", "note": "Voor 22u. Met Laura afspreken hoe (WeTransfer?)", "status": "Not started"}];
+const REPO = "senne-debacker/BAP-PLANNING", BRANCH = "main", FILE = "tasks.json";
+const API = `https://api.github.com/repos/${REPO}/contents/${FILE}`;
+const PREVIEW = ["localhost","127.0.0.1",""].includes(location.hostname) || location.protocol==="file:";
 const STAT = ["Not started","In works","Almost done","Done"];
-const WHO = ["","Ibe","Senne","Tjorven"];
-const KEY = "krabbels-planning-v1";
-let saved = {};
-try { saved = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch(e) {}
-function save(){ try { localStorage.setItem(KEY, JSON.stringify(saved)); } catch(e) {} }
-function st(t){ return (saved[t.id] && saved[t.id].s) || t.status; }
-function wie(t){ return (saved[t.id] && saved[t.id].w) || ""; }
-function set(t,k,v){ saved[t.id] = Object.assign({}, saved[t.id], {[k]:v}); save(); render(); }
+const WHO = ["Ibe","Senne","Tjorven"];
+const TYPES = ["Taak","School-deadline","Tussendeadline","Overleg"];
+const KEY = "krabbels-planning-v2";
+const ls = { get(k){ try{return localStorage.getItem(k);}catch(e){return null;} }, set(k,v){ try{ v==null?localStorage.removeItem(k):localStorage.setItem(k,v);}catch(e){} } };
 
+let TASKS = [];
+let TOKEN = ls.get(KEY+"-token") || "";
+let CAN = PREVIEW;
+let USER = "";
+let view = ls.get(KEY+"-view") || "weken";
+
+const $ = id => document.getElementById(id);
 const D = s => { const [y,m,d] = s.split("-").map(Number); return new Date(y, m-1, d); };
 const TODAY = (()=>{ const n=new Date(); return new Date(n.getFullYear(), n.getMonth(), n.getDate()); })();
 const MON = ["jan","feb","mrt","apr","mei","jun","jul","aug","sep","okt","nov","dec"];
 const MONL = ["januari","februari","maart","april","mei","juni","juli","augustus","september","oktober","november","december"];
 const fmt = d => d.getDate()+" "+MON[d.getMonth()];
 const iso = d => d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
-const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const esc = s => String(s??"").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const byId = id => TASKS.find(t=>t.id===id);
 function monday(d){ const x=new Date(d); const k=(x.getDay()+6)%7; x.setDate(x.getDate()-k); return x; }
 function weekNr(d){ const t=new Date(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())); const day=t.getUTCDay()||7; t.setUTCDate(t.getUTCDate()+4-day); const y0=new Date(Date.UTC(t.getUTCFullYear(),0,1)); return Math.ceil(((t-y0)/864e5+1)/7); }
+const sortT = a => a.slice().sort((x,y)=> x.end.localeCompare(y.end) || x.start.localeCompare(y.start) || x.t.localeCompare(y.t));
 
-const onds = [...new Set(TASKS.map(t=>t.ond))].sort();
-document.getElementById("fOnd").insertAdjacentHTML("beforeend", onds.map(o=>`<option>${esc(o)}</option>`).join(""));
-let view = "weken";
-try { view = localStorage.getItem(KEY+"-view") || "weken"; } catch(e) {}
+/* ---------- opslag (GitHub of preview) ---------- */
+const b64dec = s => new TextDecoder().decode(Uint8Array.from(atob(s.replace(/\n/g,"")), c=>c.charCodeAt(0)));
+const b64enc = s => { const b=new TextEncoder().encode(s); let r=""; for(let i=0;i<b.length;i+=0x8000) r+=String.fromCharCode(...b.subarray(i,i+0x8000)); return btoa(r); };
+const hdr = () => Object.assign({Accept:"application/vnd.github+json"}, TOKEN?{Authorization:"Bearer "+TOKEN}:{});
 
-function filtered(){
-  const w=fWie.value, o=fOnd.value, ty=fType.value, done=fDone.checked||view==="bord";
-  return TASKS.filter(t => (!o||t.ond===o) && (!ty||t.type===ty) && (done || st(t)!=="Done")
-    && (!w || (w==="-" ? !wie(t) : wie(t)===w)));
+async function fetchRemote(){
+  const r = await fetch(`${API}?ref=${BRANCH}&t=${Date.now()}`, {headers:hdr(), cache:"no-store"});
+  if(!r.ok) throw new Error("GitHub "+r.status);
+  const j = await r.json();
+  return { sha:j.sha, tasks:JSON.parse(b64dec(j.content)) };
 }
 
-function card(t){
-  const s=st(t), e=D(t.end), b=D(t.start);
-  const when = t.start===t.end ? fmt(e) : fmt(b)+" → "+fmt(e);
-  const late = s!=="Done" && e<TODAY;
-  return `<div class="task ${s==="Done"?"done":""}" data-type="${esc(t.type)}">
-    <div><span class="tag ${esc(t.type)}">${esc(t.type)}</span> ${t.prio==="Extra"?'<span class="extra">extra</span>':""}
-      <div class="tt">${esc(t.t)}</div>
-      <div class="meta"><span>${when}${late?' · <b style="color:var(--school)">te laat</b>':""}</span><span>${esc(t.ond)}</span>${t.dep?`<span>na: ${esc(t.dep)}</span>`:""}</div>
-    </div>
-    <div class="ctl">
-      <select data-id="${t.id}" data-k="w" aria-label="Wie">${WHO.map(x=>`<option value="${x}" ${wie(t)===x?"selected":""}>${x||"Wie?"}</option>`).join("")}</select>
-      <select data-id="${t.id}" data-k="s" class="st" data-s="${s}" aria-label="Status">${STAT.map(x=>`<option ${s===x?"selected":""}>${x}</option>`).join("")}</select>
-    </div>
-    ${t.note?`<div class="note">${esc(t.note)}</div>`:""}
-  </div>`;
+async function load(){
+  if(PREVIEW){
+    const p = ls.get(KEY+"-preview");
+    if(p){ try{ TASKS = JSON.parse(p); return; }catch(e){} }
+  } else {
+    try { TASKS = (await fetchRemote()).tasks; return; } catch(e) {}
+  }
+  const r = await fetch(FILE+"?t="+Date.now(), {cache:"no-store"});
+  TASKS = await r.json();
+}
+
+let queue = Promise.resolve();
+function commit(mutate, msg){
+  mutate(TASKS); render();
+  if(PREVIEW){ ls.set(KEY+"-preview", JSON.stringify(TASKS)); return; }
+  setSync("Opslaan…");
+  queue = queue.then(async ()=>{
+    for(let i=0;i<4;i++){
+      try{
+        const {sha, tasks} = await fetchRemote();
+        mutate(tasks);
+        const r = await fetch(API, {method:"PUT", headers:hdr(), body:JSON.stringify({
+          message: msg, branch: BRANCH, sha, content: b64enc(JSON.stringify(tasks,null,2)+"\n")
+        })});
+        if(r.status===409 || r.status===422) continue;
+        if(!r.ok) throw new Error("GitHub "+r.status);
+        TASKS = tasks; render(); setSync("Opgeslagen ✓"); return;
+      }catch(e){ if(i===3) break; await new Promise(res=>setTimeout(res,600)); }
+    }
+    setSync("Opslaan mislukt");
+    alert("Opslaan op GitHub is mislukt. De pagina laadt opnieuw met de laatste versie.");
+    await load(); render();
+  });
+}
+let syncT; function setSync(s){ $("sync").textContent=s; clearTimeout(syncT); if(s.includes("✓")) syncT=setTimeout(()=>$("sync").textContent="",2500); }
+
+/* ---------- weergave ---------- */
+function filtered(){
+  const w=fWie.value, o=fOnd.value, ty=fType.value, done=fDone.checked||view==="bord";
+  return sortT(TASKS.filter(t => (!o||t.ond===o) && (!ty||t.type===ty) && (done || t.status!=="Done")
+    && (!w || (w==="-" ? !t.wie : t.wie===w))));
+}
+
+function whoChip(t){ return t.wie ? `<span class="who" data-w="${esc(t.wie)}">${esc(t.wie)}</span>` : `<span class="who none">—</span>`; }
+
+function card(t, withDot){
+  return `<button type="button" class="task ${t.status==="Done"?"done":""}" data-type="${esc(t.type)}" data-open="${esc(t.id)}" ${CAN&&view==="bord"?'draggable="true"':""} title="${esc(t.type)} · ${esc(t.status)}">
+    ${withDot?`<span class="dot" data-s="${esc(t.status)}"></span>`:""}
+    <span class="tt">${esc(t.t)}</span>${whoChip(t)}
+  </button>`;
 }
 
 const legend = `<div class="legend"><span><i style="background:var(--school)"></i>School-deadline</span><span><i style="background:var(--mile)"></i>Eigen tussendeadline</span><span><i style="background:var(--task)"></i>Taak</span><span><i style="background:var(--talk)"></i>Overleg</span></div>`;
@@ -155,10 +228,10 @@ function renderWeken(list){
   const by = new Map();
   for (const t of list){ const m=iso(monday(D(t.end))); if(!by.has(m)) by.set(m,[]); by.get(m).push(t); }
   const thisMon = iso(monday(TODAY));
-  return legend + [...by.keys()].sort().map(k=>{
+  return legend + ([...by.keys()].sort().map(k=>{
     const m=D(k), s=new Date(m); s.setDate(s.getDate()+6);
-    return `<section class="week ${k===thisMon?"now":""}"><h2>Week ${weekNr(m)}</h2><div class="range">${fmt(m)} tot ${fmt(s)}</div><div class="list">${by.get(k).map(card).join("")}</div></section>`;
-  }).join("") || "<p>Niets gevonden.</p>";
+    return `<section class="week ${k===thisMon?"now":""}"><h2>Week ${weekNr(m)}</h2><div class="range">${fmt(m)} tot ${fmt(s)}</div><div class="list">${by.get(k).map(t=>card(t,true)).join("")}</div></section>`;
+  }).join("") || "<p>Niets gevonden.</p>");
 }
 
 function renderKalender(list){
@@ -171,7 +244,7 @@ function renderKalender(list){
       const d=new Date(start); d.setDate(start.getDate()+i);
       if(i>=35 && d.getMonth()!==m-1) break;
       const ds=iso(d), evs=list.filter(t=>t.end===ds);
-      cells+=`<div class="day ${d.getMonth()!==m-1?"out":""} ${+d===+TODAY?"today":""}"><div class="dnum">${d.getDate()}</div>${evs.map(t=>`<div class="ev ${st(t)==="Done"?"done":""}" data-type="${esc(t.type)}" data-open="${t.id}" title="${esc(t.t)}">${esc(t.t)}</div>`).join("")}</div>`;
+      cells+=`<div class="day ${d.getMonth()!==m-1?"out":""} ${+d===+TODAY?"today":""}"><div class="dnum">${d.getDate()}</div>${evs.map(t=>`<div class="ev ${t.status==="Done"?"done":""}" data-type="${esc(t.type)}" data-open="${esc(t.id)}" title="${esc(t.t)}">${esc(t.t)}</div>`).join("")}</div>`;
     }
     return `<section class="month"><h2>${MONL[m-1]} ${y}</h2><div class="grid">${["ma","di","wo","do","vr","za","zo"].map(x=>`<div class="dow">${x}</div>`).join("")}${cells}</div></section>`;
   }).join("");
@@ -179,49 +252,180 @@ function renderKalender(list){
 
 function renderBord(list){
   return `<div class="board">${STAT.map(s=>{
-    const items=list.filter(t=>st(t)===s);
-    return `<div class="col"><h3><span class="st" data-s="${s}">${s}</span> · ${items.length}</h3><div class="list">${items.map(card).join("")}</div></div>`;
+    const items=list.filter(t=>t.status===s);
+    return `<div class="col"><h3><span class="st" data-s="${s}">${s}</span> · ${items.length}</h3><div class="list" data-col="${s}">${items.map(t=>card(t,false)).join("")}</div></div>`;
   }).join("")}</div>`;
 }
 
 function renderNext(){
-  const up = TASKS.filter(t=>t.type==="School-deadline" && D(t.end)>=TODAY).slice(0,3);
-  const done = TASKS.filter(t=>st(t)==="Done").length;
-  next.innerHTML = up.map(t=>{ const n=Math.round((D(t.end)-TODAY)/864e5);
+  const up = sortT(TASKS.filter(t=>t.type==="School-deadline" && D(t.end)>=TODAY)).slice(0,3);
+  const done = TASKS.filter(t=>t.status==="Done").length;
+  $("next").innerHTML = up.map(t=>{ const n=Math.round((D(t.end)-TODAY)/864e5);
     return `<div class="pill"><small>${esc(t.t)}</small><b>${n===0?"vandaag":n===1?"morgen":"nog "+n+" dagen"}</b><small>${fmt(D(t.end))}</small></div>`; }).join("")
     + `<div class="pill"><small>Klaar</small><b>${done} / ${TASKS.length}</b><small>taken</small></div>`;
 }
 
+function onds(){ return [...new Set(TASKS.map(t=>t.ond).filter(Boolean))].sort(); }
+function renderOnds(){
+  const cur=fOnd.value;
+  fOnd.innerHTML = `<option value="">Alle onderdelen</option>` + onds().map(o=>`<option ${o===cur?"selected":""}>${esc(o)}</option>`).join("");
+}
+
+function renderAuth(){
+  $("addBtn").hidden = !CAN;
+  $("previewBanner").hidden = !PREVIEW;
+  $("authBtn").hidden = PREVIEW;
+  $("authBtn").textContent = CAN ? `Afmelden${USER?" ("+USER+")":""}` : "Bewerken";
+  $("foot").innerHTML = PREVIEW ? "Previewmodus (lokaal)." :
+    CAN ? `Wijzigingen worden opgeslagen in <a href="https://github.com/${REPO}/blob/${BRANCH}/${FILE}" target="_blank" rel="noopener">${FILE}</a> op GitHub.` :
+    "Alleen lezen. Klik op <b>Bewerken</b> om taken aan te passen.";
+}
+
 function render(){
   fDone.parentElement.style.display = view==="bord" ? "none" : "";
+  renderOnds();
   const list = filtered();
   main.innerHTML = view==="kalender" ? renderKalender(list) : view==="bord" ? renderBord(list) : renderWeken(list);
   document.querySelectorAll("#tabs button").forEach(b=>b.classList.toggle("on", b.dataset.v===view));
-  renderNext();
+  renderNext(); renderAuth();
 }
 
-main.addEventListener("change", e=>{
-  const el=e.target.closest("select[data-id]"); if(!el) return;
-  set(TASKS.find(t=>t.id===el.dataset.id), el.dataset.k, el.value);
-});
-main.addEventListener("click", e=>{
-  const ev=e.target.closest("[data-open]"); if(!ev) return;
-  const t=TASKS.find(x=>x.id===ev.dataset.open);
-  dlg.innerHTML = `<form method="dialog" style="margin:0">${card(t)}<div style="text-align:right;margin-top:10px"><button class="btn">Sluiten</button></div></form>`;
+/* ---------- popup ---------- */
+let openId = null;
+function showTask(id){
+  const t = byId(id); if(!t) return; openId = id;
+  const e=D(t.end), b=D(t.start);
+  const when = t.start===t.end ? fmt(e) : fmt(b)+" → "+fmt(e);
+  const late = t.status!=="Done" && e<TODAY;
+  const dis = CAN ? "" : "disabled";
+  dlg.innerHTML = `
+    <div><span class="tag ${esc(t.type)}">${esc(t.type)}</span>${t.prio==="Extra"?'<span class="extra">extra</span>':""}</div>
+    <h2>${esc(t.t)}</h2>
+    <dl class="dl">
+      <dt>Wanneer</dt><dd>${when}${late?' · <b style="color:var(--school)">te laat</b>':""}</dd>
+      <dt>Onderdeel</dt><dd>${esc(t.ond)||"—"}</dd>
+      ${t.dep?`<dt>Na</dt><dd>${esc(t.dep)}</dd>`:""}
+      ${t.note?`<dt>Notitie</dt><dd>${esc(t.note)}</dd>`:""}
+    </dl>
+    <div class="row">
+      <select id="qWie" ${dis} aria-label="Wie"><option value="">Wie?</option>${WHO.map(x=>`<option ${t.wie===x?"selected":""}>${x}</option>`).join("")}</select>
+      <select id="qSt" class="st" data-s="${esc(t.status)}" ${dis} aria-label="Status">${STAT.map(x=>`<option ${t.status===x?"selected":""}>${x}</option>`).join("")}</select>
+    </div>
+    ${CAN?"":`<p class="hint">Klik op <b>Bewerken</b> bovenaan om dit aan te passen.</p>`}
+    <div class="acts">
+      ${CAN?`<button class="btn del left" id="dDel">Verwijderen</button><button class="btn" id="dEdit">Bewerken</button>`:""}
+      <button class="btn" id="dClose">Sluiten</button>
+    </div>`;
+  if(!dlg.open) dlg.showModal();
+  $("dClose").onclick = ()=>dlg.close();
+  if(!CAN) return;
+  $("qWie").onchange = ev => { const v=ev.target.value; commit(ts=>{const x=ts.find(z=>z.id===id); if(x) x.wie=v;}, `Wie: ${t.t} → ${v||"niemand"}`); showTask(id); };
+  $("qSt").onchange = ev => { const v=ev.target.value; commit(ts=>{const x=ts.find(z=>z.id===id); if(x) x.status=v;}, `Status: ${t.t} → ${v}`); showTask(id); };
+  $("dEdit").onclick = ()=>editTask(id);
+  $("dDel").onclick = ()=>{ if(confirm(`"${t.t}" verwijderen?`)){ commit(ts=>{const i=ts.findIndex(z=>z.id===id); if(i>=0) ts.splice(i,1);}, `Taak verwijderd: ${t.t}`); dlg.close(); } };
+}
+
+function editTask(id){
+  const isNew = !id;
+  const t = isNew ? {t:"",type:"Taak",ond:"",start:iso(TODAY),end:iso(TODAY),prio:"Basis",dep:"",note:"",status:"Not started",wie:""} : byId(id);
+  const opt = (arr,cur)=>arr.map(x=>`<option ${x===cur?"selected":""}>${esc(x)}</option>`).join("");
+  dlg.innerHTML = `
+    <h2>${isNew?"Nieuwe taak":"Taak bewerken"}</h2>
+    <form id="ef" class="form">
+      <label class="full">Titel<input name="t" required value="${esc(t.t)}"></label>
+      <label>Type<select name="type">${opt(TYPES,t.type)}</select></label>
+      <label>Onderdeel<input name="ond" list="ondList" value="${esc(t.ond)}"></label>
+      <label>Start<input type="date" name="start" required value="${esc(t.start)}"></label>
+      <label>Deadline<input type="date" name="end" required value="${esc(t.end)}"></label>
+      <label>Wie<select name="wie"><option value="">Nog niemand</option>${opt(WHO,t.wie)}</select></label>
+      <label>Status<select name="status">${opt(STAT,t.status)}</select></label>
+      <label>Prioriteit<select name="prio">${opt(["Basis","Extra"],t.prio)}</select></label>
+      <label>Na (afhankelijk van)<input name="dep" list="depList" value="${esc(t.dep)}"></label>
+      <label class="full">Notitie<textarea name="note">${esc(t.note)}</textarea></label>
+      <datalist id="ondList">${onds().map(o=>`<option value="${esc(o)}">`).join("")}</datalist>
+      <datalist id="depList">${sortT(TASKS).filter(x=>x.id!==id).map(x=>`<option value="${esc(x.t)}">`).join("")}</datalist>
+      <div class="acts full">
+        <button type="button" class="btn" id="eCancel">Annuleren</button>
+        <button class="btn pri">${isNew?"Toevoegen":"Opslaan"}</button>
+      </div>
+    </form>`;
+  if(!dlg.open) dlg.showModal();
+  $("eCancel").onclick = ()=> isNew ? dlg.close() : showTask(id);
+  $("ef").onsubmit = ev => {
+    ev.preventDefault();
+    const f = Object.fromEntries(new FormData(ev.target).entries());
+    for(const k in f) f[k]=f[k].trim();
+    if(f.end < f.start){ alert("De deadline ligt voor de startdatum."); return; }
+    if(isNew){
+      const slug = f.t.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"").slice(0,50);
+      const nt = Object.assign({id: slug+"-"+Math.random().toString(36).slice(2,6)}, f);
+      commit(ts=>ts.push(nt), `Taak toegevoegd: ${f.t}`);
+      dlg.close();
+    } else {
+      commit(ts=>{const x=ts.find(z=>z.id===id); if(x) Object.assign(x,f);}, `Taak bewerkt: ${f.t}`);
+      showTask(id);
+    }
+  };
+}
+
+function loginDialog(){
+  dlg.innerHTML = `
+    <h2>Bewerken aanzetten</h2>
+    <p class="hint">Wijzigingen worden rechtstreeks opgeslagen in <code>${FILE}</code> in de GitHub-repo. Daarvoor heb je eenmalig een GitHub-token nodig (wordt enkel in deze browser bewaard).</p>
+    <ol class="hint" style="padding-left:18px">
+      <li>Open <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">nieuwe fine-grained token</a>.</li>
+      <li>Resource owner: <b>${REPO.split("/")[0]}</b>, Repository access: <b>Only select repositories → ${REPO.split("/")[1]}</b>.</li>
+      <li>Permissions → Repository → <b>Contents: Read and write</b>. Genereer en plak hieronder.</li>
+    </ol>
+    <form id="lf" class="form">
+      <label class="full">Token<input name="tok" required autocomplete="off" placeholder="github_pat_…"></label>
+      <div class="acts full"><button type="button" class="btn" id="lCancel">Annuleren</button><button class="btn pri">Inloggen</button></div>
+    </form>`;
   dlg.showModal();
+  $("lCancel").onclick = ()=>dlg.close();
+  $("lf").onsubmit = async ev => {
+    ev.preventDefault();
+    const tok = new FormData(ev.target).get("tok").trim();
+    const ok = await verify(tok);
+    if(!ok){ alert("Deze token heeft geen schrijfrechten op "+REPO+"."); return; }
+    TOKEN = tok; ls.set(KEY+"-token", tok); dlg.close(); await load(); render();
+  };
+}
+
+async function verify(tok){
+  try{
+    const r = await fetch(`https://api.github.com/repos/${REPO}`, {headers:{Accept:"application/vnd.github+json", Authorization:"Bearer "+tok}});
+    if(!r.ok) return false;
+    const j = await r.json();
+    if(!(j.permissions && j.permissions.push)) return false;
+    const u = await fetch("https://api.github.com/user", {headers:{Authorization:"Bearer "+tok}});
+    USER = u.ok ? (await u.json()).login : "";
+    CAN = true; return true;
+  }catch(e){ return false; }
+}
+
+/* ---------- events ---------- */
+main.addEventListener("click", e=>{ const el=e.target.closest("[data-open]"); if(el) showTask(el.dataset.open); });
+let dragId = null;
+main.addEventListener("dragstart", e=>{ const el=e.target.closest(".task"); if(!el) return; dragId=el.dataset.open; el.classList.add("dragging"); e.dataTransfer.effectAllowed="move"; });
+main.addEventListener("dragend", e=>{ e.target.closest?.(".task")?.classList.remove("dragging"); document.querySelectorAll(".over").forEach(x=>x.classList.remove("over")); });
+main.addEventListener("dragover", e=>{ const c=e.target.closest("[data-col]"); if(!c||!dragId) return; e.preventDefault(); document.querySelectorAll(".over").forEach(x=>x!==c&&x.classList.remove("over")); c.classList.add("over"); });
+main.addEventListener("drop", e=>{
+  const c=e.target.closest("[data-col]"); if(!c||!dragId) return; e.preventDefault();
+  const id=dragId, s=c.dataset.col, t=byId(id); dragId=null;
+  if(t && t.status!==s) commit(ts=>{const x=ts.find(z=>z.id===id); if(x) x.status=s;}, `Status: ${t.t} → ${s}`);
 });
-dlg.addEventListener("change", e=>{
-  const el=e.target.closest("select[data-id]"); if(!el) return;
-  set(TASKS.find(t=>t.id===el.dataset.id), el.dataset.k, el.value); dlg.close();
-});
-document.getElementById("tabs").addEventListener("click", e=>{
-  const b=e.target.closest("button"); if(!b) return; view=b.dataset.v;
-  try { localStorage.setItem(KEY+"-view", view); } catch(err) {}
-  render();
-});
+dlg.addEventListener("close", ()=>{ openId=null; });
+$("tabs").addEventListener("click", e=>{ const b=e.target.closest("button"); if(!b) return; view=b.dataset.v; ls.set(KEY+"-view", view); render(); });
 [fWie,fOnd,fType,fDone].forEach(el=>el.addEventListener("change", render));
-reset.addEventListener("click", ()=>{ if(confirm("Alle statussen en namen in deze browser wissen?")){ saved={}; save(); render(); } });
-render();
+$("addBtn").onclick = ()=>editTask(null);
+$("authBtn").onclick = ()=>{ if(CAN){ if(confirm("Afmelden en token uit deze browser verwijderen?")){ TOKEN=""; USER=""; CAN=false; ls.set(KEY+"-token", null); render(); } } else loginDialog(); };
+$("previewReset").onclick = ()=>{ if(confirm("Alle preview-wijzigingen wissen?")){ ls.set(KEY+"-preview", null); load().then(render); } };
+
+(async ()=>{
+  if(!PREVIEW && TOKEN && !(await verify(TOKEN))){ TOKEN=""; ls.set(KEY+"-token", null); }
+  await load(); render();
+})();
 </script>
 </body>
 </html>
