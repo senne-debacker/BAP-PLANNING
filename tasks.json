@@ -78,19 +78,6 @@
     "wie": ""
   },
   {
-    "id": "materiaal-uitlenen-op-school",
-    "t": "Materiaal uitlenen op school",
-    "type": "Taak",
-    "ond": "Bouw",
-    "start": "2026-11-10",
-    "end": "2026-11-13",
-    "prio": "Basis",
-    "dep": "",
-    "note": "Beamer Optoma short throw, Logitech Brio, 12V ledstrips, HDMI XL, tripod, monitor",
-    "status": "Not started",
-    "wie": ""
-  },
-  {
     "id": "user-journey-in-figma-updaten-naar-het-verhaal-nu",
     "t": "User journey in Figma updaten naar het verhaal nu",
     "type": "Taak",
